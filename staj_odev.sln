@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "staj_odev", "staj_odev.csproj", "{B97D019D-7A50-1E4F-E277-8E3B2BC407CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B97D019D-7A50-1E4F-E277-8E3B2BC407CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97D019D-7A50-1E4F-E277-8E3B2BC407CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97D019D-7A50-1E4F-E277-8E3B2BC407CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97D019D-7A50-1E4F-E277-8E3B2BC407CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0EBED83B-5516-4354-8C63-C706864E387E}
+	EndGlobalSection
+EndGlobal
