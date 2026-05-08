@@ -1,0 +1,39 @@
+@model staj_odev.ViewModels.KayitViewModel
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h4 class="card-title mb-4">Kayıt Ol</h4>
+                <form asp-action="Kayit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    <div class="mb-3">
+                        <label asp-for="Eposta" class="form-label"></label>
+                        <input asp-for="Eposta" class="form-control" />
+                        <span asp-validation-for="Eposta" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Sifre" class="form-label"></label>
+                        <input asp-for="Sifre" class="form-control" />
+                        <span asp-validation-for="Sifre" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="SifreTekrar" class="form-label"></label>
+                        <input asp-for="SifreTekrar" class="form-control" />
+                        <span asp-validation-for="SifreTekrar" class="text-danger small"></span>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100">Kayıt Ol</button>
+                </form>
+                <hr />
+                <p class="text-center mb-0">Zaten hesabın var mı? <a asp-action="Giris">Giriş Yap</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
