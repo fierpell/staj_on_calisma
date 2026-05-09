@@ -1,0 +1,38 @@
+@model staj_odev.ViewModels.GorevViewModel
+@{
+    ViewData["Title"] = "Yeni Görev";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="mb-4">Yeni Görev</h2>
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    <div class="mb-3">
+                        <label asp-for="Baslik" class="form-label"></label>
+                        <input asp-for="Baslik" class="form-control" placeholder="Görev başlığı..." />
+                        <span asp-validation-for="Baslik" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Aciklama" class="form-label"></label>
+                        <textarea asp-for="Aciklama" class="form-control" rows="3" placeholder="Açıklama (isteğe bağlı)..."></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="BitisTarihi" class="form-label"></label>
+                        <input asp-for="BitisTarihi" class="form-control" type="date" />
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-dark">Kaydet</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -1,0 +1,61 @@
+@model IEnumerable<staj_odev.ViewModels.GorevViewModel>
+@{
+    ViewData["Title"] = "Görevlerim";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Görevlerim</h2>
+    <a asp-action="Create" class="btn btn-dark">+ Yeni Görev</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Henüz göreviniz yok. Yeni bir görev ekleyin.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Başlık</th>
+                    <th>Açıklama</th>
+                    <th>Oluşturulma</th>
+                    <th>Bitiş</th>
+                    <th>Durum</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var gorev in Model)
+                {
+                    <tr class="@(gorev.Tamamlandi ? "table-success" : (gorev.BitisTarihi < DateTime.Today ? "table-danger" : ""))">
+                        <td class="@(gorev.Tamamlandi ? "text-decoration-line-through text-muted" : "fw-semibold")">@gorev.Baslik</td>
+                        <td class="text-muted small">@(gorev.Aciklama?.Length > 60 ? gorev.Aciklama[..60] + "…" : gorev.Aciklama)</td>
+                        <td class="small">@gorev.OlusturulmaTarihi.ToLocalTime().ToString("dd.MM.yyyy")</td>
+                        <td class="small">@(gorev.BitisTarihi.HasValue ? gorev.BitisTarihi.Value.ToString("dd.MM.yyyy") : "-")</td>
+                        <td>
+                            @if (gorev.Tamamlandi)
+                            {
+                                <span class="badge bg-success">Tamamlandı</span>
+                            }
+                            else if (gorev.BitisTarihi < DateTime.Today)
+                            {
+                                <span class="badge bg-danger">Gecikmiş</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Devam Ediyor</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@gorev.Id" class="btn btn-sm btn-outline-dark">Detay</a>
+                            <a asp-action="Edit" asp-route-id="@gorev.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@gorev.Id" class="btn btn-sm btn-outline-danger">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

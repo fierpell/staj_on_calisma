@@ -1,0 +1,43 @@
+@model staj_odev.ViewModels.GorevViewModel
+@{
+    ViewData["Title"] = "Görevi Düzenle";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="mb-4">Görevi Düzenle</h2>
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    <div class="mb-3">
+                        <label asp-for="Baslik" class="form-label"></label>
+                        <input asp-for="Baslik" class="form-control" />
+                        <span asp-validation-for="Baslik" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Aciklama" class="form-label"></label>
+                        <textarea asp-for="Aciklama" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="BitisTarihi" class="form-label"></label>
+                        <input asp-for="BitisTarihi" class="form-control" type="date" />
+                    </div>
+                    <div class="mb-4 form-check">
+                        <input asp-for="Tamamlandi" class="form-check-input" />
+                        <label asp-for="Tamamlandi" class="form-check-label"></label>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-dark">Güncelle</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

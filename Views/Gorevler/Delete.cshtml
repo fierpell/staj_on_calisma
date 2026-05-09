@@ -1,0 +1,29 @@
+@model staj_odev.ViewModels.GorevViewModel
+@{
+    ViewData["Title"] = "Görevi Sil";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-5">
+        <div class="card border-danger shadow-sm">
+            <div class="card-header bg-danger text-white">Görevi Sil</div>
+            <div class="card-body p-4">
+                <p>Aşağıdaki görevi silmek istediğinizden emin misiniz?</p>
+                <dl class="row">
+                    <dt class="col-sm-4">Başlık</dt>
+                    <dd class="col-sm-8">@Model.Baslik</dd>
+                    <dt class="col-sm-4">Açıklama</dt>
+                    <dd class="col-sm-8">@(Model.Aciklama ?? "-")</dd>
+                    <dt class="col-sm-4">Bitiş Tarihi</dt>
+                    <dd class="col-sm-8">@(Model.BitisTarihi.HasValue ? Model.BitisTarihi.Value.ToString("dd.MM.yyyy") : "-")</dd>
+                </dl>
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

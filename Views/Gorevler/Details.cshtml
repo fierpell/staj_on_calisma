@@ -1,0 +1,48 @@
+@model staj_odev.ViewModels.GorevViewModel
+@{
+    ViewData["Title"] = "Görev Detayı";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white">Görev Detayı</div>
+            <div class="card-body p-4">
+                <dl class="row">
+                    <dt class="col-sm-4">Başlık</dt>
+                    <dd class="col-sm-8 fw-semibold">@Model.Baslik</dd>
+
+                    <dt class="col-sm-4">Açıklama</dt>
+                    <dd class="col-sm-8">@(Model.Aciklama ?? "-")</dd>
+
+                    <dt class="col-sm-4">Oluşturulma</dt>
+                    <dd class="col-sm-8">@Model.OlusturulmaTarihi.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</dd>
+
+                    <dt class="col-sm-4">Bitiş Tarihi</dt>
+                    <dd class="col-sm-8">@(Model.BitisTarihi.HasValue ? Model.BitisTarihi.Value.ToString("dd.MM.yyyy") : "-")</dd>
+
+                    <dt class="col-sm-4">Durum</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.Tamamlandi)
+                        {
+                            <span class="badge bg-success">Tamamlandı</span>
+                        }
+                        else if (Model.BitisTarihi < DateTime.Today)
+                        {
+                            <span class="badge bg-danger">Gecikmiş</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Devam Ediyor</span>
+                        }
+                    </dd>
+                </dl>
+
+                <div class="d-flex gap-2 mt-3">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Düzenle</a>
+                    <a asp-action="Index" class="btn btn-dark">Listeye Dön</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
