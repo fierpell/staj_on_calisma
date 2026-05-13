@@ -47,4 +47,21 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Gorevler}/{action=Index}/{id?}");
 
+// Veritabanı otomatik oluşsun ve test kullanıcısı eklensin diye bu bloğu ekledim
+using (var alan = app.Services.CreateScope())
+{
+    var kullaniciYoneticisi = alan.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var context = alan.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // Varsa migration'ları yap, yoksa DB oluştur
+    context.Database.Migrate();
+
+    // Eğer hiç kullanıcı yoksa örnek bir tane ekle
+    if (!kullaniciYoneticisi.Users.Any())
+    {
+        var kullanici = new IdentityUser { UserName = "staj@test.com", Email = "staj@test.com" };
+        var sonuc = kullaniciYoneticisi.CreateAsync(kullanici, "Sifre123!").Result;
+    }
+}
+
 app.Run();
