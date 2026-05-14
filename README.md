@@ -1,68 +1,61 @@
-# Staj Ödevi - Görev Takip Sistemi
+# Görev Takip Uygulaması
 
-Bu proje staj süresince öğrendiğim ASP.NET Core MVC teknolojisini kullanarak hazırladığım küçük bir görev takip uygulamasıdır.
+Staj öncesi ödev kapsamında geliştirilen ASP.NET Core MVC tabanlı görev yönetim uygulaması.
 
-## Neler Yaptım?
+## Kullanılan Teknolojiler
 
-*   Kullanıcıların kayıt olabileceği ve giriş yapabileceği bir sistem kurdum (Identity kullandım).
-*   Görevleri eklemek, silmek ve güncellemek için gerekli ekranları hazırladım.
-*   Herkesin sadece kendi eklediği görevleri görebilmesi için yetkilendirme ekledim.
-*   Görevlerin durumunu (yapılıyor, bitti, devam ediyor) takip edebiliyoruz.
+- ASP.NET Core MVC (.NET 9)
+- Entity Framework Core (Code First)
+- SQL Server / LocalDB
+- ASP.NET Core Identity
+- Bootstrap 5
 
-## Kullanılanlar
+## Özellikler
 
-- .NET 9 MVC
-- SQL Server (Entity Framework Core)
-- Bootstrap (Tasarım için)
+- Kullanıcı kayıt ve giriş işlemleri
+- Giriş yapılmadan görev ekranlarına erişilemez
+- Her kullanıcı yalnızca kendi görevlerini görür
+- Görev ekleme, düzenleme, silme, listeleme ve detay görüntüleme
+- Görevlerde başlık, açıklama, bitiş tarihi ve tamamlanma durumu tutulur
 
----
-
-## Kurulum ve Çalıştırma
+## Kurulum
 
 ### Gereksinimler
-- [.NET 9 SDK](https://dotnet.microsoft.com/download)
-- SQL Server veya SQL Server Express (LocalDB yeterlidir)
+- .NET 9 SDK
+- SQL Server veya LocalDB
 
-### 1. Repoyu klonla
+### Adımlar
+
+1. Repo klonlanır
 
 ```bash
-git clone https://github.com/<kullanici-adi>/staj_odev.git
-cd staj_odev
+git clone https://github.com/fierpell/staj_on_calisma.git
+cd staj_on_calisma
 ```
 
-### 2. Veritabanı bağlantısını ayarla
-
-`appsettings.json` içindeki `DefaultConnection` değerini kendi SQL Server'ına göre düzenle:
+2. `appsettings.json` dosyasındaki bağlantı dizesi kontrol edilir, LocalDB kullanılıyorsa değiştirilmesine gerek yoktur
 
 ```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=GorevYonetimDb;Trusted_Connection=True;MultipleActiveResultSets=true"
-}
+"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=GorevYonetimDb;Trusted_Connection=True;MultipleActiveResultSets=true"
 ```
 
-LocalDB kullanıyorsan bu ayarı olduğu gibi bırakabilirsin.
-
-### 3. Migration'ları uygula
+3. Veritabanı oluşturulur
 
 ```bash
 dotnet ef database update
 ```
 
-> Not: Proje ilk açılışta migration'ları otomatik uygular, ancak manuel çalıştırmak daha güvenlidir.
-
-### 4. Projeyi çalıştır
+4. Proje çalıştırılır
 
 ```bash
 dotnet run
 ```
 
-veya Visual Studio'da `F5` tuşuna bas. Uygulama `https://localhost:5001` adresinde açılır.
+Tarayıcıda `http://localhost:5157` adresine gidilir.
 
----
+## Test Kullanıcısı
 
-## Örnek Kullanıcı Bilgileri
+Proje ilk açılışta aşağıdaki kullanıcıyı otomatik olarak oluşturur:
 
-Proje ilk çalıştığında otomatik olarak bir test kullanıcısı oluşturulmaktadır:
-
-- **Email:** staj@test.com
+- **Email:** staj@test.com  
 - **Şifre:** Sifre123!
