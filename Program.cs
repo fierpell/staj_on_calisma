@@ -47,7 +47,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Gorevler}/{action=Index}/{id?}");
 
-// Veritabanı otomatik oluşsun ve test kullanıcısı eklensin diye bu bloğu ekledim
+// Uygulama ilk açılışında veritabanı ve seed data hazırlanıyor
 using (var alan = app.Services.CreateScope())
 {
     var kullaniciYoneticisi = alan.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
